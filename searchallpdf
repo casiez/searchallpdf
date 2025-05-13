@@ -30,7 +30,11 @@ def searchInFile(file, searchterms):
 
     for page in pages:
         countpg += 1
-        interpreter.process_page(page)
+        try:
+            interpreter.process_page(page)
+        except:
+            print("ISSUES when processing page %d from %s\n"%(countpg,file))
+            continue
         layout = device.get_result()
 
         for lobj in layout:
